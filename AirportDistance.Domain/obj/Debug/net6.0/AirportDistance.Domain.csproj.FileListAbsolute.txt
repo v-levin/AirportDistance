@@ -1,0 +1,15 @@
+C:\Projects\AirportDistance\AirportDistance.Domain\bin\Debug\net6.0\AirportDistance.Domain.deps.json
+C:\Projects\AirportDistance\AirportDistance.Domain\bin\Debug\net6.0\AirportDistance.Domain.dll
+C:\Projects\AirportDistance\AirportDistance.Domain\bin\Debug\net6.0\AirportDistance.Domain.pdb
+C:\Projects\AirportDistance\AirportDistance.Domain\bin\Debug\net6.0\AirportDistance.Contracts.dll
+C:\Projects\AirportDistance\AirportDistance.Domain\bin\Debug\net6.0\AirportDistance.Contracts.pdb
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.csproj.AssemblyReference.cache
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.AssemblyInfoInputs.cache
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.AssemblyInfo.cs
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.csproj.CoreCompileInputs.cache
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.csproj.CopyComplete
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.dll
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\refint\AirportDistance.Domain.dll
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\AirportDistance.Domain.pdb
+C:\Projects\AirportDistance\AirportDistance.Domain\obj\Debug\net6.0\ref\AirportDistance.Domain.dll
