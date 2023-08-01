@@ -5,6 +5,6 @@ namespace AirportDistance.Contracts.Interfaces
 {
     public interface IDistanceService
     {
-        DistanceResponse GetDistance(DistanceRequest request);
+        Task<DistanceResponse> GetDistance(DistanceRequest request);
     }
 }

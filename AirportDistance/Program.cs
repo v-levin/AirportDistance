@@ -1,6 +1,9 @@
 using AirportDistance.Contracts.Interfaces;
+using AirportDistance.Contracts.Requests;
 using AirportDistance.Contracts.Wrappers;
 using AirportDistance.Domain.Services;
+using AirportDistance.Domain.Validators;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,9 @@ builder.Services.AddLogging(logging =>
 
 builder.Services.AddTransient<IDistanceService, DistanceService>();
 builder.Services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
+builder.Services.AddTransient<IAirportService, AirportService>();
+builder.Services.AddTransient<ICalculatorService, CalculatorService>();
+builder.Services.AddTransient<IValidator<DistanceRequest>, AirportCodeValidator>();
 
 builder.Services.AddSwaggerGen();
 

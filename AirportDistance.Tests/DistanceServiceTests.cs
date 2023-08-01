@@ -2,11 +2,13 @@
 using AirportDistance.Contracts;
 using AirportDistance.Contracts.Interfaces;
 using AirportDistance.Contracts.Requests;
+using AirportDistance.Contracts.Responses;
 using AirportDistance.Domain.Services;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Newtonsoft.Json;
-using static System.Net.WebRequestMethods;
 
 namespace AirportDistance.Tests
 {
@@ -16,12 +18,22 @@ namespace AirportDistance.Tests
         private readonly string _airportsUrl;
         private readonly Mock<IHttpClientWrapper> _httpClientMock;
         private readonly Mock<ILogger<DistanceService>> _loggerMock;
+        private readonly Mock<IValidator<DistanceRequest>> _validatorMock;
+        private readonly Mock<IAirportService> _airportServiceMock;
+        private readonly Mock<ICalculatorService> _calculatorServiceMock;
 
         public DistanceServiceTests()
         {
             _httpClientMock = new Mock<IHttpClientWrapper>();
             _loggerMock = new Mock<ILogger<DistanceService>>();
-            _distanceService = new DistanceService(_httpClientMock.Object, _loggerMock.Object);
+            _validatorMock = new Mock<IValidator<DistanceRequest>>();
+            _airportServiceMock = new Mock<IAirportService>();
+            _calculatorServiceMock = new Mock<ICalculatorService>();
+            _distanceService = new DistanceService(
+                _loggerMock.Object,
+                _validatorMock.Object,
+                _airportServiceMock.Object,
+                _calculatorServiceMock.Object);
             _airportsUrl = "https://places-dev.cteleport.com/airports";
         }
 
@@ -29,8 +41,8 @@ namespace AirportDistance.Tests
         public async Task GetDistance_ValidRequest_ReturnsDistanceResponse()
         {
             // Arrange
-            var originAirportCode = "AMS";
-            var destinationAirportCode = "PRG";
+            const string originAirportCode = "AMS";
+            const string destinationAirportCode = "PRG";
             var distanceRequest = new DistanceRequest 
             { 
                 OriginAirportCode = originAirportCode, 
@@ -63,6 +75,20 @@ namespace AirportDistance.Tests
                     Content = new StringContent(JsonConvert.SerializeObject(destinationAirport)) 
                 });
 
+            _validatorMock.Setup(v => v.Validate(distanceRequest)).Returns(new ValidationResult());
+            _airportServiceMock.Setup(a => a.GetAirportDetails(It.IsAny<string>()))
+                .ReturnsAsync(new Airport 
+                { 
+                    Location = new Location
+                    {
+                        Lon = 1.443,
+                        Lat = 2.321
+                    }
+                });
+            _calculatorServiceMock
+                .Setup(s => s.CalculateDistance(It.IsAny<Location>(), It.IsAny<Location>()))
+                .Returns(new DistanceResponse { Distance = 100, Errors = new List<ResponseError>(), Result = true });
+
             // Act
             var response = await _distanceService.GetDistance(distanceRequest);
 
@@ -77,13 +103,26 @@ namespace AirportDistance.Tests
         public async Task GetDistance_InvalidAirportCodes_ReturnsErrorResponse()
         {
             // Arrange
-            var originAirportCode = "INVALID";
-            var destinationAirportCode = "INVALID";
+            const string originAirportCode = "INVALID";
+            const string destinationAirportCode = "INVALID";
             var distanceRequest = new DistanceRequest 
             { 
                 OriginAirportCode = originAirportCode, 
                 DestinationAirportCode = destinationAirportCode 
             };
+            
+            var validationResult = new ValidationResult 
+            { 
+                Errors = new List<ValidationFailure> 
+                {
+                    new()
+                    {
+                        ErrorMessage = "Invalid request" 
+                    }
+                }
+            };
+            
+            _validatorMock.Setup(v => v.Validate(distanceRequest)).Returns(validationResult);
 
             // Act
             var response = await _distanceService.GetDistance(distanceRequest);
