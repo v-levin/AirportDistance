@@ -28,7 +28,7 @@ namespace AirportDistance.Domain.Services
         /// Gets the distance between two airports.
         /// </summary>
         /// <param name="request">Distance request.</param>
-        /// <returns>Returnes the distance in miles.</returns>
+        /// <returns>Returns the distance in miles.</returns>
         public DistanceResponse GetDistance(DistanceRequest request)
         {
             var validator = new AirportCodeValidator().Validate(request).ToResponse();

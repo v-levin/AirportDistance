@@ -467,7 +467,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\levin\\.nuget\\packages\\": {}
+    "C:\\Users\\ViktorTraykovski\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -475,18 +475,17 @@
       "projectUniqueName": "C:\\Projects\\AirportDistance\\AirportDistance\\AirportDistance.csproj",
       "projectName": "AirportDistance",
       "projectPath": "C:\\Projects\\AirportDistance\\AirportDistance\\AirportDistance.csproj",
-      "packagesPath": "C:\\Users\\levin\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ViktorTraykovski\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\AirportDistance\\AirportDistance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\levin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ViktorTraykovski\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -536,7 +535,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
