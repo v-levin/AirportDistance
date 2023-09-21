@@ -44,8 +44,13 @@ namespace AirportDistance.Domain.Services
             DistanceResponse response = new();
             try
             {
-                var originAirport = await _airportService.GetAirportDetails(request.OriginAirportCode!);
-                var destinationAirport = await _airportService.GetAirportDetails(request.DestinationAirportCode!);
+                var originAirportTask = _airportService.GetAirportDetails(request.OriginAirportCode!);
+                var destinationAirportTask = _airportService.GetAirportDetails(request.DestinationAirportCode!);
+
+                await Task.WhenAll(originAirportTask, destinationAirportTask);
+
+                var originAirport = originAirportTask.Result;
+                var destinationAirport = destinationAirportTask.Result;
 
                 if (originAirport.Location is not null && destinationAirport.Location is not null)
                 {
